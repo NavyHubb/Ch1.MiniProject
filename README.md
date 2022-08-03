@@ -19,7 +19,7 @@
 
 ## 2. 사용 기술
 `Back-end`
-- (blank)
+-a
 
 `Front-end`
 - JQuery 3.5.1
