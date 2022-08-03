@@ -24,6 +24,7 @@
 `Front-end`
 - JQuery 3.5.1
 - HTML, CSS, Javascript
+- Bulma
 
 `deploy`
 - AWS EC2 (Ubuntu 18.04 LTS)
