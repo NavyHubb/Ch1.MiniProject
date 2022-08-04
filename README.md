@@ -19,12 +19,16 @@
 
 ## 2. 사용 기술
 `Back-end`
-- (blank)
+- Pymongo
+- Flask
+- Jinja
+- JWT
 
 `Front-end`
 - JQuery 3.5.1
 - HTML, CSS, Javascript
 - Bulma
+- Bootstrap
 
 `deploy`
 - AWS EC2 (Ubuntu 18.04 LTS)
