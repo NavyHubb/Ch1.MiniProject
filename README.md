@@ -39,7 +39,9 @@
 <br>
 
 ## 3. 실행화면
--
+
+<img width="1272" alt="Thumbnail" src="https://user-images.githubusercontent.com/101810007/182818069-32b8a03f-a98b-4ef8-ba28-4fce6e53af09.png">
+
 
 <br>
 
