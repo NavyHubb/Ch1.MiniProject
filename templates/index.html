@@ -56,16 +56,12 @@
         .title_button > button {
             width: 100px;
             height: 35px;
-
             flex-direction: row;
 
             background-color: transparent;
             color: white;
-
             border-radius: 50px;
-
             border: 1px solid white;
-
             margin-top: 10px;
 
         }
@@ -95,8 +91,13 @@
 
         .middle {
             width: 100%;
-            height: 55px;
+            height: 70px;
             background-color: gray;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
             font-family: 'Nanum Myeongjo', serif;
         }
@@ -104,16 +105,12 @@
         .middle_button > button {
             width: 100px;
             height: 35px;
-
             flex-direction: row;
 
             background-color: transparent;
             color: white;
-
             border-radius: 50px;
-
             border: 1px solid white;
-
             margin-top: 10px;
         }
 
@@ -437,7 +434,7 @@
                 }
             })
         }
-        
+
 
         function toggle_like(post_id, type) {
             console.log(post_id, type)
@@ -514,7 +511,7 @@
 <!--미들 배너-->
 <div class="middle">
     <div class="middle_button">
-        <button type="button" onclick="get_all'">전신</button>
+        <button type="button" onclick="get_all()">전신</button>
         <button type="button" onclick="get_aerobic()">유산소</button>
         <button type="button" onclick="get_shoulder()">어깨</button>
         <button type="button" onclick="get_arm()">팔</button>
