@@ -33,6 +33,13 @@
             margin: auto;
         }
 
+        .hero-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
         .title {
             font-weight: 800;
             font-size: 5rem;
@@ -120,6 +127,53 @@
         //     // get_movies()
         // })
 
+
+        function get_videos(ifCategory) {
+            $("#post-box").empty()
+            $.ajax({
+                type: "GET",
+                url: `/get_movies`,
+                data: {},
+                success: function (response) {
+                    $('#wrap').empty()
+                    console.log(response)
+                    let temp_html = ``
+
+                    let list = response['posts']
+                    for (let i = 0; i < list.length; i++) {
+                        let category = list[i]['category']
+                        let movie_link = list[i]['movie_link']
+                        let movie_channel = list[i]['movie_channel']
+                        let movie_embed = "https://www.youtube.com/embed/" + movie_link.split("?v=")[1]
+
+                        temp_html = `<div class="col">
+                                            <div class="card">
+                                                <iframe src=${movie_embed} title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen></iframe>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">${category}</h5>
+                                                    <p class="card-text">${movie_channel}</p>
+                                                    <div class="level-right">
+                                                        <a class="level-item is-sparta" aria-label="heart"
+                                                           onclick="toggle_like('', 'heart')">
+                                                      <span class="icon is-small"><i class="fa fa-heart"
+                                                                                     aria-hidden="true"></i></span>&nbsp;<span
+                                                                class="like-num">2.7k</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`
+
+                        if (category == ifCategory) {
+                            $('#wrap').append(temp_html)
+                        }
+                    }
+                }
+            })
+        }
+
         function get_all() {
             $("#post-box").empty()
             $.ajax({
@@ -157,282 +211,40 @@
                                                 </div>
                                             </div>
                                         </div>`
-
-                            $('#wrap').append(temp_html)
-
+                        $('#wrap').append(temp_html)
                     }
                 }
             })
         }
+
         function get_aerobic() {
             $("#post-box").empty()
-            $.ajax({
-                type: "GET",
-                url: `/get_movies`,
-                data: {},
-                success: function (response) {
-                    $('#wrap').empty()
-                    console.log(response)
-                    let temp_html = ``
-
-                    let list = response['posts']
-                    for (let i = 0; i < list.length; i++) {
-                        let category = list[i]['category']
-                        let movie_link = list[i]['movie_link']
-                        let movie_channel = list[i]['movie_channel']
-                        let movie_embed = "https://www.youtube.com/embed/" + movie_link.split("?v=")[1]
-
-                        temp_html = `<div class="col">
-                                            <div class="card">
-                                                <iframe src=${movie_embed} title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowfullscreen></iframe>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${category}</h5>
-                                                    <p class="card-text">${movie_channel}</p>
-                                                    <div class="level-right">
-                                                        <a class="level-item is-sparta" aria-label="heart"
-                                                           onclick="toggle_like('', 'heart')">
-                                                      <span class="icon is-small"><i class="fa fa-heart"
-                                                                                     aria-hidden="true"></i></span>&nbsp;<span
-                                                                class="like-num">2.7k</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`
-
-                        if (category == "aerobic") {
-                            $('#wrap').append(temp_html)
-                        }
-                    }
-                }
-            })
+            get_videos("aerobic");
         }
+
         function get_shoulder() {
             $("#post-box").empty()
-            $.ajax({
-                type: "GET",
-                url: `/get_movies`,
-                data: {},
-                success: function (response) {
-                    $('#wrap').empty()
-                    console.log(response)
-                    let temp_html = ``
-
-                    let list = response['posts']
-                    for (let i = 0; i < list.length; i++) {
-                        let category = list[i]['category']
-                        let movie_link = list[i]['movie_link']
-                        let movie_channel = list[i]['movie_channel']
-                        let movie_embed = "https://www.youtube.com/embed/" + movie_link.split("?v=")[1]
-
-                        temp_html = `<div class="col">
-                                            <div class="card">
-                                                <iframe src=${movie_embed} title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowfullscreen></iframe>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${category}</h5>
-                                                    <p class="card-text">${movie_channel}</p>
-                                                    <div class="level-right">
-                                                        <a class="level-item is-sparta" aria-label="heart"
-                                                           onclick="toggle_like('', 'heart')">
-                                                      <span class="icon is-small"><i class="fa fa-heart"
-                                                                                     aria-hidden="true"></i></span>&nbsp;<span
-                                                                class="like-num">2.7k</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`
-
-                        if (category == "shoulder") {
-                            $('#wrap').append(temp_html)
-                        }
-                    }
-                }
-            })
+            get_videos("shoulder");
         }
+
         function get_back() {
             $("#post-box").empty()
-            $.ajax({
-                type: "GET",
-                url: `/get_movies`,
-                data: {},
-                success: function (response) {
-                    $('#wrap').empty()
-                    console.log(response)
-                    let temp_html = ``
-
-                    let list = response['posts']
-                    for (let i = 0; i < list.length; i++) {
-                        let category = list[i]['category']
-                        let movie_link = list[i]['movie_link']
-                        let movie_channel = list[i]['movie_channel']
-                        let movie_embed = "https://www.youtube.com/embed/" + movie_link.split("?v=")[1]
-
-                        temp_html = `<div class="col">
-                                            <div class="card">
-                                                <iframe src=${movie_embed} title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowfullscreen></iframe>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${category}</h5>
-                                                    <p class="card-text">${movie_channel}</p>
-                                                    <div class="level-right">
-                                                        <a class="level-item is-sparta" aria-label="heart"
-                                                           onclick="toggle_like('', 'heart')">
-                                                      <span class="icon is-small"><i class="fa fa-heart"
-                                                                                     aria-hidden="true"></i></span>&nbsp;<span
-                                                                class="like-num">2.7k</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`
-
-                        if (category == "back") {
-                            $('#wrap').append(temp_html)
-                        }
-                    }
-                }
-            })
+            get_videos("back");
         }
+
         function get_leg() {
             $("#post-box").empty()
-            $.ajax({
-                type: "GET",
-                url: `/get_movies`,
-                data: {},
-                success: function (response) {
-                    $('#wrap').empty()
-                    console.log(response)
-                    let temp_html = ``
-
-                    let list = response['posts']
-                    for (let i = 0; i < list.length; i++) {
-                        let category = list[i]['category']
-                        let movie_link = list[i]['movie_link']
-                        let movie_channel = list[i]['movie_channel']
-                        let movie_embed = "https://www.youtube.com/embed/" + movie_link.split("?v=")[1]
-
-                        temp_html = `<div class="col">
-                                            <div class="card">
-                                                <iframe src=${movie_embed} title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowfullscreen></iframe>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${category}</h5>
-                                                    <p class="card-text">${movie_channel}</p>
-                                                    <div class="level-right">
-                                                        <a class="level-item is-sparta" aria-label="heart"
-                                                           onclick="toggle_like('', 'heart')">
-                                                      <span class="icon is-small"><i class="fa fa-heart"
-                                                                                     aria-hidden="true"></i></span>&nbsp;<span
-                                                                class="like-num">2.7k</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`
-
-                        if (category == "leg") {
-                            $('#wrap').append(temp_html)
-                        }
-                    }
-                }
-            })
+            get_videos("leg");
         }
+
         function get_chest() {
             $("#post-box").empty()
-            $.ajax({
-                type: "GET",
-                url: `/get_movies`,
-                data: {},
-                success: function (response) {
-                    $('#wrap').empty()
-                    console.log(response)
-                    let temp_html = ``
-
-                    let list = response['posts']
-                    for (let i = 0; i < list.length; i++) {
-                        let category = list[i]['category']
-                        let movie_link = list[i]['movie_link']
-                        let movie_channel = list[i]['movie_channel']
-                        let movie_embed = "https://www.youtube.com/embed/" + movie_link.split("?v=")[1]
-
-                        temp_html = `<div class="col">
-                                            <div class="card">
-                                                <iframe src=${movie_embed} title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowfullscreen></iframe>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${category}</h5>
-                                                    <p class="card-text">${movie_channel}</p>
-                                                    <div class="level-right">
-                                                        <a class="level-item is-sparta" aria-label="heart"
-                                                           onclick="toggle_like('', 'heart')">
-                                                      <span class="icon is-small"><i class="fa fa-heart"
-                                                                                     aria-hidden="true"></i></span>&nbsp;<span
-                                                                class="like-num">2.7k</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`
-
-                        if (category == "chest") {
-                            $('#wrap').append(temp_html)
-                        }
-                    }
-                }
-            })
+            get_videos("chest");
         }
+
         function get_arm() {
             $("#post-box").empty()
-            $.ajax({
-                type: "GET",
-                url: `/get_movies`,
-                data: {},
-                success: function (response) {
-                    $('#wrap').empty()
-                    console.log(response)
-                    let temp_html = ``
-
-                    let list = response['posts']
-                    for (let i = 0; i < list.length; i++) {
-                        let category = list[i]['category']
-                        let movie_link = list[i]['movie_link']
-                        let movie_channel = list[i]['movie_channel']
-                        let movie_embed = "https://www.youtube.com/embed/" + movie_link.split("?v=")[1]
-
-                        temp_html = `<div class="col">
-                                            <div class="card">
-                                                <iframe src=${movie_embed} title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowfullscreen></iframe>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${category}</h5>
-                                                    <p class="card-text">${movie_channel}</p>
-                                                    <div class="level-right">
-                                                        <a class="level-item is-sparta" aria-label="heart"
-                                                           onclick="toggle_like('', 'heart')">
-                                                      <span class="icon is-small"><i class="fa fa-heart"
-                                                                                     aria-hidden="true"></i></span>&nbsp;<span
-                                                                class="like-num">2.7k</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`
-
-                        if (category == "arm") {
-                            $('#wrap').append(temp_html)
-                        }
-                    }
-                }
-            })
+            get_videos("arm");
         }
 
 
@@ -481,6 +293,7 @@
             alert('로그아웃!')
             window.location.href = "/login"
         }
+
 
     </script>
 </head>
